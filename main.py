@@ -12,7 +12,7 @@ cols = list(tb.columns)
 cols.remove("Country")
 cols.remove("Year")
 
-
+tb = tb[tb["Year"] >=2004]
 countries=exm.my_countries
 fin = pd.DataFrame({"index":['count', 'mean', 'std', 'min', '25%', '50%', '75%', 'max']})
 overall = pd.DataFrame(index=countries, columns=cols)

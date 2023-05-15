@@ -45,13 +45,13 @@ class DataCreation:
         self.military.Military = pd.to_numeric(self.military.Military)
         
 
-        self.social = pd.read_excel(self.path+"SocialSpending(all).xls")
-        self.social["Country"] = self.social["Country"].replace("Türkiye, Republic of", "Turkey")
+        self.social = pd.read_excel(self.path+"SocialSpending(all).xlsx")
+        self.social["Country"] = self.social["Country"].replace("Türkiye", "Turkey")
         years = list(self.social.columns)
         new_years = [x for x in years if x not in self.unwanted]
         self.social = self.social.melt(id_vars="Country", value_vars=new_years, var_name="Year", value_name="Social")
         self.social.Year = pd.to_numeric(self.social.Year)
-        self.social.Social = self.social.Social.replace("None", None)
+        self.social.Social = self.social.Social.replace("..", None)
         self.social.Social = pd.to_numeric(self.social.Social)
 
         self.tax = pd.read_excel(self.path+"TaxRevenue(all).xls")
